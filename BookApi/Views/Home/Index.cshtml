@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<BookApi.Models.Book>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Add Book", "AddBook") |
+    @*@Html.ActionLink("Top Rated Books", "TopRated")*@
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePublished)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Available)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Isbn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DatePublished)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Available)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AverageRating)
+    </td>
+    <td>
+        @Html.ActionLink("Check Out", "CheckOutBook", new { BookId = item.Id }) |
+        @Html.ActionLink("Check In", "CheckInBook", new { BookId = item.Id }) |
+        @Html.ActionLink("Edit", "EditBook", new { BookId = item.Id }) |
+        @Html.ActionLink("Delete", "DeleteBook", new { BookId = item.Id })
+    </td>
+</tr>
+    }
+</table>
+

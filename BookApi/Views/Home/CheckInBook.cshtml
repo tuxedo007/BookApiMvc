@@ -1,0 +1,109 @@
+﻿@model BookApi.Models.Book
+
+@{
+    ViewBag.Title = "CheckInBook";
+}
+<h3>You must provide a rating before checking the book back in</h3>
+
+@*@using (Html.BeginForm("CheckInBook", "Book", FormMethod.Post))*@
+@using (Html.BeginForm())
+{
+
+    <h4>Check In Book</h4>
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    @*@Html.HiddenFor(e => e.Id)*@
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Isbn, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Isbn)
+                @Html.ValidationMessageFor(model => model.Isbn)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatePublished, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DatePublished)
+                @Html.ValidationMessageFor(model => model.DatePublished)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Available, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Available)
+                @Html.ValidationMessageFor(model => model.Available)
+            </div>
+        </div>
+
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Title)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Isbn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePublished)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePublished)
+        </dd>*@
+    </dl>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AverageRating, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AverageRating)
+            @Html.ValidationMessageFor(model => model.AverageRating, "Must enter a rating")
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Check In" class="btn btn-default" />
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Check in" class="btn btn-default" />
+            </div>
+        </div>*@
+
+}
+
+<div>
+    @Html.ActionLink("Back to Book List", "Index")
+</div>
